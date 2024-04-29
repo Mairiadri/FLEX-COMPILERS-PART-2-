@@ -44,7 +44,15 @@ int line = 1;
 
 DELIMITER       [ \t]+
 INTCONST        0|[1-9]+[0-9]*
-VARIABLE	FILLME
+KEYWORD         (break|case|func|const|continue|do|double|else|float|for|if|int|long|return|short|sizeof|struct|switch|void|while)
+IDENTIFIER      [a-zA-Z_][a-zA-Z0-9_]
+STRING          \"[^\"]*\"
+INTEGER         -?\d+(.\d+)?
+OPERATOR        (\+|\-|\*|\/|%|==|!=|<=|>=|<|>|&&|\|\||\+=|-=|\*=|\/=|!|\+\+|\-\-|&)
+COMMENT         \/\/[^\n]*$
+MULTICOMMENT    \/\*[\s\S]*?\*\/
+WHITE_SPACES    \s+
+
 
 
 /* Gia kathe pattern (aristera) pou tairiazei ekteleitai o antistoixos
@@ -54,15 +62,22 @@ VARIABLE	FILLME
 %%
 
 {DELIMITER}     { return DELIMITER; }
-{INTCONST}      { return INTCONST; }
-{VARIABLE}	{ /* FILL ME */ }
+{INTCONST}      { return INTCONST;  }
+{IDENTIFIER}    { return IDENTIFIER;}   /*1.3.1 Αναγνωριστικά (ονόματα)*/
+{KEYWORD}       { return KEYWORD;   }   /*1.3.2 Λέξεις κλειδιά         */
+{STRING}        { return STRING;    }   /*1.3.3 Λεκτικά κυριολεκτικά   */
+{INTEGER}       { return INTEGER;   }   /*1.3.4.1 Ακέραιοι             */
+{OPERATOR}      { return OPERATOR;  }   /*1.3.5 Τελεστές               */
+{COMMENT}       { return COMMENT;   }   /*1.4 Σχολια                   */
+{MULTICOMMENT}  { return MULTICOMMENT;} /*1.4 Σχολια                   */
+{WHITE_SPACES}  { return WHITE_SPACES;  }
 \n              { line++; printf("\n"); }
 <<EOF>>		{ printf("#END-OF-FILE#\n"); exit(0); }
 
 %%
 
 /* Pinakas me ola ta tokens se antistoixia me tous orismous sto token.h */
-char *tname[2] = {"DELIMITER","INTCONST" /*, FILL ME */};
+char *tname[9] = {"DELIMITER","INTCONST","KEYWORD","IDENTIFIER","STRING","INTEGER","OPERATOR","COMMENT","MULTICOMMENT","WHITE_SPACES"};
 
 
 /* H synarthsh main: O kwdikas autos tha topotheththei autousios sto

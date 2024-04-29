@@ -42,16 +42,15 @@ int line = 1;
    Meta apo auto, mporei na ginei xrhsh twn onomatwn (aristera) anti twn,
    synhthws idiaiterws makroskelwn kai dysnohtwn, kanonikwn ekfrasewn */
 
-DELIMITER       [ \t]+
-INTCONST        0|[1-9]+[0-9]*
+DELIMITER       [;]
+IDENTIFIER      ^[a-zA-Z_][a-zA-Z0-9_]{0,31}
 KEYWORD         (break|case|func|const|continue|do|double|else|float|for|if|int|long|return|short|sizeof|struct|switch|void|while)
-IDENTIFIER      [a-zA-Z_][a-zA-Z0-9_]
 STRING          \"[^\"]*\"
-INTEGER         -?\d+(.\d+)?
+INTEGER         ^(0|0[xX][0-9a-fA-F]+|0[0-7]+|[1-9][0-9]*)$
+FLOAT           -?([0-9])+\.[0-9]*([eE][-+]?([0-9])+)?
 OPERATOR        (\+|\-|\*|\/|%|==|!=|<=|>=|<|>|&&|\|\||\+=|-=|\*=|\/=|!|\+\+|\-\-|&)
 COMMENT         \/\/[^\n]*$
-MULTICOMMENT    \/\*[\s\S]*?\*\/
-WHITE_SPACES    \s+
+WHITE_SPACES    [ \t]+
 
 
 
@@ -61,23 +60,23 @@ WHITE_SPACES    \s+
 
 %%
 
-{DELIMITER}     { return DELIMITER; }
-{INTCONST}      { return INTCONST;  }
+{DELIMITER}     { return DELIMITER; }   /*1.3 Λεκτικές μονάδες (tokens)*/
 {IDENTIFIER}    { return IDENTIFIER;}   /*1.3.1 Αναγνωριστικά (ονόματα)*/
 {KEYWORD}       { return KEYWORD;   }   /*1.3.2 Λέξεις κλειδιά         */
 {STRING}        { return STRING;    }   /*1.3.3 Λεκτικά κυριολεκτικά   */
 {INTEGER}       { return INTEGER;   }   /*1.3.4.1 Ακέραιοι             */
+{FLOAT}         { return FLOAT;     }   /*1.3.4.2 Αριθμοί κινούμενης υποδιαστολής*/
 {OPERATOR}      { return OPERATOR;  }   /*1.3.5 Τελεστές               */
 {COMMENT}       { return COMMENT;   }   /*1.4 Σχολια                   */
-{MULTICOMMENT}  { return MULTICOMMENT;} /*1.4 Σχολια                   */
-{WHITE_SPACES}  { return WHITE_SPACES;  }
+{WHITE_SPACES}  { return WHITE_SPACES;} /*1.5 White_spaces χαρακτήρες  */
+
 \n              { line++; printf("\n"); }
 <<EOF>>		{ printf("#END-OF-FILE#\n"); exit(0); }
 
 %%
 
 /* Pinakas me ola ta tokens se antistoixia me tous orismous sto token.h */
-char *tname[9] = {"DELIMITER","INTCONST","KEYWORD","IDENTIFIER","STRING","INTEGER","OPERATOR","COMMENT","MULTICOMMENT","WHITE_SPACES"};
+char *tname[9] = {"DELIMITER","IDENTIFIER","KEYWORD","STRING","INTEGER","FLOAT","OPERATOR","COMMENT","WHITE_SPACES"};
 
 
 /* H synarthsh main: O kwdikas autos tha topotheththei autousios sto

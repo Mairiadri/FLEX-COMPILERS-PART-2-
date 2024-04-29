@@ -1,12 +1,11 @@
 #define DELIMITER 1
-#define INTCONST 2
+#define IDENTIFIER 2
 #define KEYWORD 3
-#define IDENTIFIER 4
-#define STRING 5
-#define INTEGER 6
+#define STRING 4
+#define INTEGER 5
+#define FLOAT 6
 #define OPERATOR 7
 #define COMMENT 8
-#define MULTICOMMENT 9
-#define WHITE_SPACES 10
+#define WHITE_SPACES 9
 /*#define FILL ME */
 

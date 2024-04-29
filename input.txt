@@ -1,3 +1,49 @@
 58
 135
 4321
+varName
+my_variable
+counter569
+calculateSum
+processData
+printMessage
+Person
+12car
+_Employee
+"Hello, world!"
+"This is a test string"
+"12345"
+572
+-456
+23901
+2,17
+-1.4
+5.0
+// single line comment
+/* multi-line comment */
+  a test string
+Αυτό είναι·ένα·τεστ
+Ένα;τέστ;συμβολοσειράς
+    Άλλο    ένα    τεστ
+/*    multi line comment! */
++
+-
+/
+%
+=
++=
+-=
+*=
+/=
+++
+--
+==
+!=
+<
+<=
+>
+>=
+!
+&&
+||
+&

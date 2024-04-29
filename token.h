@@ -1,11 +1,11 @@
-#define DELIMITER 1
-#define IDENTIFIER 2
-#define KEYWORD 3
-#define STRING 4
-#define INTEGER 5
-#define FLOAT 6
-#define OPERATOR 7
-#define COMMENT 8
-#define WHITE_SPACES 9
+#define WHITE_SPACES 1
+#define INTEGER 2
+#define IDENTIFIER 3
+#define KEYWORD 4
+#define FLOAT 5
+#define COMMENT 6
+#define STRING 7
+#define OPERATOR 8
+#define DELIMITER 9
 /*#define FILL ME */
 

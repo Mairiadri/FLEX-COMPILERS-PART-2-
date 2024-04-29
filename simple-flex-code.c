@@ -2004,7 +2004,7 @@ void yyfree (void * ptr )
 
 
 /* Pinakas me ola ta tokens se antistoixia me tous orismous sto token.h */
-char *tname[9] = {"DELIMITER","IDENTIFIER","KEYWORD","STRING","INTEGER","FLOAT","OPERATOR","COMMENT","WHITE_SPACES"};
+char *tname[9] = {"WHITE_SPACES","INTEGER","IDENTIFIER","KEYWORD","FLOAT","COMMENT","STRING","OPERATOR","DELIMITER"};
 
 
 /* H synarthsh main: O kwdikas autos tha topotheththei autousios sto

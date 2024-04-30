@@ -16,7 +16,7 @@
 */
 
 /* H anagnwsh periorizetai se ena mono arxeio kai termatizei sto prwto EOF */
-%option noyywrap
+%option noyywrap 
 
 
 /* Kwdikas C gia orismo twn apaitoumenwn header files kai twn metablhtwn.
@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include <ctype.h>
 /* Header file pou periexei lista me ola ta tokens */
 #include "token.h"
 
@@ -51,6 +51,7 @@ FLOAT           -?([0-9])+\.[0-9]*([eE][-+]?([0-9])+)?
 OPERATOR        (\+|\-|\*|\/|%|==|!=|<=|>=|<|>|&&|\|\||\+=|-=|\*=|\/=|!|\+\+|\-\-|&|=)
 COMMENT         \/\/.*|(\/\*[^*]*\*+([^/*][^*]*\*+)*\/)
 WHITE_SPACES    [ \t]+
+ERROR          [ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσΤτΥυΦφΧχΨψΩω]+ 
 
 
 /* Gia kathe pattern (aristera) pou tairiazei ekteleitai o antistoixos
@@ -68,6 +69,7 @@ WHITE_SPACES    [ \t]+
 {OPERATOR}      { return OPERATOR;  }   /*1.3.5 Τελεστές               */
 {COMMENT}       { return COMMENT;   }   /*1.4 Σχολια                   */
 {WHITE_SPACES}  { return WHITE_SPACES;} /*1.5 White_spaces χαρακτήρες  */
+{ERROR}         { return ERROR;}        /*Κατηγορία λαθών*/
 
 \n              { line++; printf("\n"); }
 <<EOF>>		{ printf("#END-OF-FILE#\n"); exit(0); }
@@ -75,7 +77,7 @@ WHITE_SPACES    [ \t]+
 %%
 
 /* Pinakas me ola ta tokens se antistoixia me tous orismous sto token.h */
-char *tname[9] = {"WHITE_SPACES","INTEGER","KEYWORD","IDENTIFIER","FLOAT","COMMENT","STRING","OPERATOR","DELIMITER"};
+char *tname[10] = {"WHITE_SPACES","INTEGER","KEYWORD","IDENTIFIER","FLOAT","COMMENT","STRING","OPERATOR","DELIMITER","ERROR"};
 
 /* H synarthsh main: O kwdikas autos tha topotheththei autousios sto
    programma C pou tha dhmiourghsei to Flex kai tha apotelesei to arxiko

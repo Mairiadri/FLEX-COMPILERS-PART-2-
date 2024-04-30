@@ -7,4 +7,5 @@
 #define STRING       7
 #define OPERATOR     8
 #define DELIMITER    9
+#define ERROR    10
 

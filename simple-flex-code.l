@@ -18,7 +18,6 @@
 /* H anagnwsh periorizetai se ena mono arxeio kai termatizei sto prwto EOF */
 %option noyywrap 
 
-
 /* Kwdikas C gia orismo twn apaitoumenwn header files kai twn metablhtwn.
    Otidhpote anamesa sta %{ kai %} metaferetai autousio sto arxeio C pou
    tha dhmiourghsei to Flex. */
@@ -28,7 +27,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
+
 /* Header file pou periexei lista me ola ta tokens */
 #include "token.h"
 
@@ -51,7 +50,11 @@ FLOAT           -?([0-9])+\.[0-9]*([eE][-+]?([0-9])+)?
 OPERATOR        (\+|\-|\*|\/|%|==|!=|<=|>=|<|>|&&|\|\||\+=|-=|\*=|\/=|!|\+\+|\-\-|&|=)
 COMMENT         \/\/.*|(\/\*[^*]*\*+([^/*][^*]*\*+)*\/)
 WHITE_SPACES    [ \t]+
-ERROR          [ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσΤτΥυΦφΧχΨψΩω]+ 
+ERROR           [^;\t\n]+
+
+
+
+
 
 
 /* Gia kathe pattern (aristera) pou tairiazei ekteleitai o antistoixos

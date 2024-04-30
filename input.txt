@@ -19,6 +19,7 @@ _Employee
 2,17
 -1.4
 5.0
+0
 // single line comment
 /* multi-line comment */
   a test string

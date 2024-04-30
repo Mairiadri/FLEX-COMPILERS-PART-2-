@@ -44,14 +44,13 @@ int line = 1;
 
 DELIMITER       [;]
 IDENTIFIER      [a-zA-Z_][a-zA-Z0-9_]{0,31}
-KEYWORD         break|case|func|const|continue|do|double|else|float|for|if|int|long|return|short|sizeof|struct|switch|void|while
+KEYWORD         (break|case|func|const|continue|do|double|else|float|for|if|int|long|return|short|sizeof|struct|switch|void|while)
 STRING          \"[^\"]*\"
 INTEGER         (0|0[xX][0-9a-fA-F]+|0[0-7]+|[1-9][0-9]*)
-FLOAT           ^-?([0-9])+.[0-9]*([eE][-+]?([0-9])+)?
+FLOAT           -?([0-9])+\.[0-9]*([eE][-+]?([0-9])+)?
 OPERATOR        (\+|\-|\*|\/|%|==|!=|<=|>=|<|>|&&|\|\||\+=|-=|\*=|\/=|!|\+\+|\-\-|&|=)
-COMMENT         \/\*[\s\S]*?\*\/|\/\/.*
+COMMENT         \/\/.*|(\/\*[^*]*\*+([^/*][^*]*\*+)*\/)
 WHITE_SPACES    [ \t]+
-
 
 
 /* Gia kathe pattern (aristera) pou tairiazei ekteleitai o antistoixos
@@ -61,8 +60,8 @@ WHITE_SPACES    [ \t]+
 %%
 
 {DELIMITER}     { return DELIMITER; }   /*1.3 Λεκτικές μονάδες (tokens)*/
-{IDENTIFIER}    { return IDENTIFIER;}   /*1.3.1 Αναγνωριστικά (ονόματα)*/
 {KEYWORD}       { return KEYWORD;   }   /*1.3.2 Λέξεις κλειδιά         */
+{IDENTIFIER}    { return IDENTIFIER;}   /*1.3.1 Αναγνωριστικά (ονόματα)*/
 {STRING}        { return STRING;    }   /*1.3.3 Λεκτικά κυριολεκτικά   */
 {INTEGER}       { return INTEGER;   }   /*1.3.4.1 Ακέραιοι             */
 {FLOAT}         { return FLOAT;     }   /*1.3.4.2 Αριθμοί κινούμενης υποδιαστολής*/
@@ -76,8 +75,7 @@ WHITE_SPACES    [ \t]+
 %%
 
 /* Pinakas me ola ta tokens se antistoixia me tous orismous sto token.h */
-char *tname[9] = {"WHITE_SPACES","INTEGER","IDENTIFIER","KEYWORD","FLOAT","COMMENT","STRING","OPERATOR","DELIMITER"};
-
+char *tname[9] = {"WHITE_SPACES","INTEGER","KEYWORD","IDENTIFIER","FLOAT","COMMENT","STRING","OPERATOR","DELIMITER"};
 
 /* H synarthsh main: O kwdikas autos tha topotheththei autousios sto
    programma C pou tha dhmiourghsei to Flex kai tha apotelesei to arxiko

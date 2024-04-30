@@ -1,3 +1,9 @@
+@
+$
+cp
+c  p
+month<=12
+month <= 12
 58
 135
 4321
@@ -25,7 +31,7 @@ _Employee
 0
 // single line comment
 /* multi-line comment */
-  a test string
+
 Αυτό
 είναι;
 ένα;
@@ -34,7 +40,7 @@ _Employee
 τέστ;
 συμβολοσειράς
     Άλλο    ένα    τεστ
-/*    multi line comment! */
+
 +
 -
 /
@@ -60,3 +66,13 @@ return
 break
 a+=1;
 // γεια
+1+1
+2-2
+a+=5
+ 
+  
+   
+0x213
+0532
+x=10;
+kapa;

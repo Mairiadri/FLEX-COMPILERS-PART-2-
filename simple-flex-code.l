@@ -45,7 +45,7 @@ DELIMITER       [;]
 IDENTIFIER      [a-zA-Z_][a-zA-Z0-9_]{0,31}
 KEYWORD         (break|case|func|const|continue|do|double|else|float|for|if|int|long|return|short|sizeof|struct|switch|void|while)
 STRING          \"[^\"]*\"
-INTEGER         (0|0[xX][0-9a-fA-F]+|0[0-7]+|[1-9][0-9]*)
+INTEGER         -*(0|0[xX][0-9a-fA-F]+|0[0-7]+|[1-9][0-9]*)
 FLOAT           -?([0-9])+\.[0-9]*([eE][-+]?([0-9])+)?
 OPERATOR        (\+|\-|\*|\/|%|==|!=|<=|>=|<|>|&&|\|\||\+=|-=|\*=|\/=|!|\+\+|\-\-|&|=)
 COMMENT         \/\/.*|(\/\*[^*]*\*+([^/*][^*]*\*+)*\/)
